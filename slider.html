@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<style>
+		.slider{
+			width: 400px;
+			height: 300px;
+			overflow: hidden;
+		}
+		/*.wrapper{			可以把圖片變橫的
+			width: 1600px;
+		}*/
+		.slider .photo{
+			width: 400px;
+			height: 300px;
+			float: left;		/*圖片浮動*/
+		}
+		.slider .photo img{
+			width: 100%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(function(){
+			let currentPosition = 0;	//照片當下的位置
+			let photo = $(".photo");
+			let photoWidth =photo.width();			//照片的寬度
+			let photoNums = photo.length;		//幾張照片
+			let speed = 3000;				//輪播的秒數
+			let duration = 1500;			//切換的秒數
+
+			//$("wrapper").css("width",photoWidth*photoNum);
+			$(".wrapper").css({			//用css的指令
+				width:photoWidth*photoNums,
+			})
+			function move(){
+				$(".wrapper").animate({
+					marginLeft:-(currentPosition*photoWidth),},duration);
+				
+			}
+			function cycle(){
+				if(currentPosition==photoNums-1){
+					currentPosition=0;
+				}else{
+					currentPosition++
+				}
+				move();
+			}
+			setInterval(cycle,speed);
+		})
+
+
+	</script>
+</head>
+<body>
+	<div class="slider">
+		<div class="wrapper">
+			<div class="photo">
+				<img src="images/photo-1.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-2.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-3.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-4.jpg" alt="">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<style>
+		.silder{
+			width: 400px;
+			height: 300px;
+			position: relative;
+			
+		}
+	
+		.silder .photo{
+			width: 400px;
+			height: 300px;
+			position: absolute;
+			display:none;
+			
+		}
+		.slider .photo img{
+			width: 100%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(function(){
+			let photo = $(".photo");
+			let photoNums = photo.length;
+			let currentPosition = 0;
+			let speed = 4000;
+			let duration = 1200;
+			photo.eq(0).show();
+			// $(".photo:nth-of-type(1)").show();
+
+			function move(){
+				let nextPhoto = (currentPosition+1)%photoNums
+				photo.eq(currentPosition).fadeOut(duration);
+				photo.eq(nextPhoto).fadeIn(duration);
+				// currentPosition++			當下的照片+1
+				currentPosition = nextPhoto;		//當下照片等於下面一張照片
+			}
+			setInterval(move,speed);
+		})
+			//0
+	</script>
+</head>
+<body>
+	<div class="silder">
+		<div class="wrapper">
+			<div class="photo">
+				<img src="images/photo-1.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-2.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-3.jpg" alt="">
+			</div>
+			<div class="photo">
+				<img src="images/photo-4.jpg" alt="">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
